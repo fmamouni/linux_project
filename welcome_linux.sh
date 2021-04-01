@@ -90,24 +90,74 @@ elif [ $pizza_size -eq 2 ]; then
 subtotal=8.5
 elif [$pizza_size -eq 3 ]; then 
 subtotal=10.50
-fi
-fi
-fi
 #crust choice
-echo " Please choose your crust choice
-1 stuffed crust
-2 Original Pan 
-3 Hand Tossed
-4 Thin Crust
-5 Deep dish" 
-read -p " Please chosse your crust preferance >>"  CRUST
-# Crust flavor
-echo " Please choose your crust flavor
-1 no flavor
-2 Garlic buttery blend
-3 Cohort 3 favorite
-4 Toasted paresan"
-read -p " Please choose our crust flavor preferance (1-4) >>" FLAVOR
-echo " Thank you , $F_NAME! YOur order so far is $pizza_size $topping pizza, $Flavor $CRUST. Is that correct?"  
+ echo " Please choose your crust choice
+  1 stuffed crust
+  2 Original Pan 
+ 3 Hand Tossed
+ 4 Thin Crust
+ 5 Deep dish" 
+ read -p " Please chosse your crust preferance >>"  CRUST
+ # Crust flavor
+ echo " Please choose your crust flavor
+ 1 no flavor
+ 2 Garlic buttery blend
+ 3 Cohort 3 favorite
+ 4 Toasted paresan"
+ read -p " Please choose our crust flavor preferance (1-4) >>" FLAVOR
+ echo " Thank you , $F_NAME! YOur order so far is $pizza_size $topping pizz>"
+fi
+fi
+fi
+# Build your own pizza
+if [ $SIGNATURE -eq 2 ]; then
+echo :" ---------------------"
+echo " Let us have you build your own pizza" 
+echo " All create your own pizza come with your choice if crust type, up to 3 toppings ( any extra topping would be at an additional $ 1.25), crust flavor, and your personal choice of cheese. "
+echo " size           Slices          Price        Order number"
+echo "........................................................."
+echo " Personal        4 slices        $ 10.00            1       "
+echo " Medium          8 slices        $ 13.00            2       "
+echo " Large           8 slices        $ 15.00            3       "
+read -p " Please select your pizza size >>" piza_size
+#Build your own pizza crust types
+echo " Crust choice:
+  1 stuffed crust
+  2 Original Pan 
+ 3 Hand Tossed
+ 4 Thin Crust
+ 5 Deep dish" 
+ read -p " Please chosse your crust preferance >>"  CRUST
+ # Crust flavor
+ echo " Crust flavor
+ 1 no flavor
+ 2 Garlic buttery blend
+ 3 Cohort 3 favorite
+ 4 Toasted paresan"
+read - p " Please choose your crust flavor >>" CRUST
+echo " Toppings:
+1 Mushrooms
+2 Red Onions
+3 Mediterranean black olives
+4 Jalapeno Peppers
+5 Banana peppers
+6 Pinaples
+7 Roma tomatoes
+8 Spinach
+9 Artichoke hearts
+10 Anchovies
+11 Ham
+12 Sausage
+13  Grilled chicken
+14 Pepperoni"
+counter=1
+read -p "Please choose  up to 3 toppings >>" toppings
+for t in ${topping [@]} 
+do 
+echo "$counter.$t"
+((counter++))
+done
+fi
 #payment
 #printf "$"; echo "scale=2; ((250/100)*$subtotal)+$subtotal | bc-l"
+
