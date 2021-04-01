@@ -1,0 +1,6 @@
+ Customer first name: amal
+Customer last name: farah
+Customer email address: farah@happiness.com
+Customer phone number: 21244
+Customer Street address: , falls church
+Customer Ziocode: 
