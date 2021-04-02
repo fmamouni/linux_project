@@ -152,7 +152,8 @@ echo " Toppings:
 14 Pepperoni"
 counter=1
 read -p "Please choose  up to 3 toppings >>" toppings
-for t in ${topping [@]} 
+toppings=(Red_Onions Mediterranean_black_olives Jalapeno Banana_peppers Pinaple  Roma_tomatoes spinach Artichoke_heart Anchovies Ham Sausage Grilled_chicken Pepperoni) 
+for t in ${toppings[@]} 
 do 
 echo "$counter.$t"
 ((counter++))
@@ -160,4 +161,101 @@ done
 fi
 #payment
 #printf "$"; echo "scale=2; ((250/100)*$subtotal)+$subtotal | bc-l"
-
+# Side menu 
+# Wings: 
+echo "wings"
+read -p " Please choose your flavor of wings >>" wings
+echo "
+1 Traditional mild
+2 Sweet and sour
+3 BBQ
+4 Spicy
+5 Soy sauce"
+echo " wings size"
+read -p " Please choose the size of wings that you would like >>" size
+echo "
+1 6 piece $ 6.99
+2 12 piece $ 12.99
+3 18 piece $ 16.99
+4 20 piece $ 18.99
+5 24 piece $ 20.99"
+if [ $size -eq 1 ]; then
+subtotal=6.99
+elif [ $size -eq 2 ]; then
+subtotal=12.99
+elif [ $size -eq 3 ]; then
+subtotal=16.99
+elif [ $size -eq 4 ]; then
+subtotal=18.99
+elif [ $size -eq 5 ]; then
+subtotal=20.99
+fi
+# Pasta 
+echo "Pasta"
+read -p "Please choose your favorite Pasta >>" pasta
+echo "
+1. Creamy Mushroom with Shrimp
+2. Bake Chicken with Alfredo Sauce
+3. Meatball with red onion
+4. Ham with olives
+5. Italian Sausage"
+echo "pasta size"
+read -p "Please choose the size of the bowl for your pasta >>" pasta_size
+echo "
+1. Small size $ 6.99
+2. Large size $ 8.99"
+if [ $pasta_size -eq 1 ]; then
+subtotal=6.99
+elif [ $pasta_size -eq 2 ]; then
+subtotal=8.99
+fi
+# Dessert
+echo "Dessert"
+read -p "Please choose your favorite dessert" Dessert
+echo "
+1 Chocolate Chip Cookies
+2 Cinnamon Mini Sticks
+3 Garlic Butter Sticks
+4 Apple Pie
+5 Ice cream sundae"
+echo "Dessert size"
+read -p "Please choose the dessert size" Dessert_size
+echo "
+1 Small size $ 2.99
+2 Medium size $ 3.99
+3 Large size $ 4.99"
+if [ $Dessert_size -eq 1 ]; then
+subtotal=2.99
+elif [ $Dessert_size -eq 2 ]; then
+subtotal=3.99
+elif [ $Dessert_size -eq 3 ]; then
+subtotal=4.99
+fi
+# Drink
+echo "Drink"
+read -p "Please choose your drink" Drink
+echo "
+1 Coca cola
+2 Pepsi
+3 Sprite
+4 Mountain Dew
+5 Dr. Pepper
+6 Orange Juice
+7 Apple Juice
+8 Ice Tea
+9 Spring water"
+# Drink 
+echo "Drink size"
+read -p "Please choose the size of drink" Drink_size
+echo "
+1 Small 8.oz $ 1.29
+2 Medium 16.oz $ 1.99
+3 Large 20.0z $ 2.10"
+if [ $Drink_size -eq 1 ]; then
+subtotal=1.29
+elif [ $Drink_size -eq 2 ]; then
+subtotal=1.99
+elif [ $Drink_size -eq 3 ]; then
+subtotal=2.10
+fi
+#
