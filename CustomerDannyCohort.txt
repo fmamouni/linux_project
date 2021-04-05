@@ -1,0 +1,6 @@
+ Customer first name: Danny
+Customer last name: Cohort
+Customer email address: main str apt 308
+Customer phone number: 70365489754
+Customer Street address: , Fairfax
+Customer Ziocode: 11245

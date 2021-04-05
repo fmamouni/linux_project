@@ -26,6 +26,7 @@ echo " Welcome back!  Let us retrieve your data"
 read -p " Would you please confirm your first name >> " F_NAME
 read -p " Would you please confirm your last name? >> " L_NAME
 read -p " PLease confirm your zipcode >>" ZIPCODE
+#cat Customer$F_NAME$L_NAME.txt
 fi
 # Zipcode
 #Do we want to charge a delivery fee?
@@ -50,7 +51,9 @@ fi
 echo " -*-*-*-*-*-*-*-*"
 echo " Let's get you started $F_NAME"
 echo " -*-*-*-*-*-*-*-*"
-echo "
+while true;  
+do
+echo "This is the list of offerings in our menu:
 1: Pizza
 2: Wings
 3: Pasta
@@ -91,29 +94,33 @@ subtotal=8.5
 elif [$pizza_size -eq 3 ]; then 
 subtotal=10.50
 #crust choice
- echo " Please choose your crust choice
-  1 stuffed crust
-  2 Original Pan 
- 3 Hand Tossed
- 4 Thin Crust
- 5 Deep dish" 
+ echo " We offer a variety of crust options: 
+ 1. stuffed crust
+ 2. Original Pan 
+ 3. Hand Tossed
+ 4. Thin Crust
+ 5.Deep dish" 
  read -p " Please chosse your crust preferance >>"  CRUST
  # Crust flavor
- echo " Please choose your crust flavor
- 1 no flavor
- 2 Garlic buttery blend
- 3 Cohort 3 favorite
- 4 Toasted paresan"
+ echo "We offer a variety of crust flavors:
+ 1. no flavor
+ 2. Garlic buttery blend
+ 3. Cohort 3 favorite
+ 4. Toasted paresan"
  read -p " Please choose our crust flavor preferance (1-4) >>" FLAVOR
- echo " Thank you , $F_NAME! YOur order so far is $pizza_size $topping pizz>"
+ echo " Thank you, $F_NAME!"
 fi
 fi
+# Go back to main menu for additional order
+read -p "Do you like to go for a additional order? Type 1 for yes or 2 for no >>"
+if [ $additional_order -eq 2 ]; then
+break
 fi
 # Build your own pizza
 if [ $SIGNATURE -eq 2 ]; then
-echo :" ---------------------"
+echo " ---------------------"
 echo " Let us have you build your own pizza" 
-echo " All create your own pizza come with your choice if crust type, up to 3 toppings ( any extra topping would be at an additional $ 1.25), crust flavor, and your personal choice of cheese. "
+echo " All create your own pizza come with your choice of crust type, up to 3 toppings (any extra topping would be at an additional $ 1.25), crust flavor, and your personal choice of cheese. "
 echo " size           Slices          Price        Order number"
 echo "........................................................."
 echo " Personal        4 slices        $ 10.00            1       "
@@ -122,18 +129,18 @@ echo " Large           8 slices        $ 15.00            3       "
 read -p " Please select your pizza size >>" piza_size
 #Build your own pizza crust types
 echo " Crust choice:
-  1 stuffed crust
-  2 Original Pan 
- 3 Hand Tossed
- 4 Thin Crust
+1. stuffed crust
+2. Original Pan 
+3. Hand Tossed
+4. Thin Crust
  5 Deep dish" 
- read -p " Please chosse your crust preferance >>"  CRUST
- # Crust flavor
- echo " Crust flavor
- 1 no flavor
- 2 Garlic buttery blend
- 3 Cohort 3 favorite
- 4 Toasted paresan"
+read -p " Please chosse your crust preferance >>"  CRUST
+# Crust flavor
+echo " Crust flavor
+1 no flavor
+2 Garlic buttery blend
+3 Cohort 3 favorite
+4 Toasted paresan"
 read - p " Please choose your crust flavor >>" CRUST
 echo " Toppings:
 1 Mushrooms
@@ -159,26 +166,29 @@ echo "$counter.$t"
 ((counter++))
 done
 fi
-#payment
-#printf "$"; echo "scale=2; ((250/100)*$subtotal)+$subtotal | bc-l"
+# GO to main menu for additional order
+read -p " do you like to go for a additional order? Type 1 for yes or 2 for no >>" additional_order
+if [ $additional_order -eq 2 ]; then
+break
+fi
 # Side menu 
 # Wings: 
-echo "wings"
+elif [ $CHOICE -eq 2 ]; then
+echo " Great choice $F_NAME. Our wings come in different flavors:
+1. Traditional mild
+2. Sweet and sour
+3. BBQ
+4. Spicy
+5. Soy sauce"
 read -p " Please choose your flavor of wings >>" wings
-echo "
-1 Traditional mild
-2 Sweet and sour
-3 BBQ
-4 Spicy
-5 Soy sauce"
-echo " wings size"
+echo "Now that you have cosen $wings flavor, let's choose the size of your order. Please select from the below list:
+wings size:
+6. piece $ 6.99
+2. 12 piece $ 12.99
+3. 18 piece $ 16.99
+4. 20 piece $ 18.99
+5. 24 piece $ 20.99"
 read -p " Please choose the size of wings that you would like >>" size
-echo "
-1 6 piece $ 6.99
-2 12 piece $ 12.99
-3 18 piece $ 16.99
-4 20 piece $ 18.99
-5 24 piece $ 20.99"
 if [ $size -eq 1 ]; then
 subtotal=6.99
 elif [ $size -eq 2 ]; then
@@ -190,40 +200,50 @@ subtotal=18.99
 elif [ $size -eq 5 ]; then
 subtotal=20.99
 fi
+#GO to main menu for additional order
+read -p " do you like to go for a additional order? Type 1 for yes or 2 for no >> " additional_order
+if [ $additional_order -eq 2 ]; then
+break
+fi
 # Pasta 
-echo "Pasta"
-read -p "Please choose your favorite Pasta >>" pasta
-echo "
+elif [ $CHOICE -eq 3 ]; then
+echo " Great choice $F_NAME."
+echo " Our pasta is the best!! These are the different pasta options: 
 1. Creamy Mushroom with Shrimp
 2. Bake Chicken with Alfredo Sauce
 3. Meatball with red onion
 4. Ham with olives
 5. Italian Sausage"
-echo "pasta size"
-read -p "Please choose the size of the bowl for your pasta >>" pasta_size
-echo "
+read -p "Please choose your favorite Pasta >>" pasta
+echo "pasta size:
 1. Small size $ 6.99
-2. Large size $ 8.99"
+222 2. Large size $ 8.99"
+read -p "Please choose the size of the bowl for your pasta >>" pasta_size
 if [ $pasta_size -eq 1 ]; then
 subtotal=6.99
 elif [ $pasta_size -eq 2 ]; then
 subtotal=8.99
 fi
+# GO  to main menu for additional order
+read -p " do you like to go for a additional order? Type 1 for yes or 2 for no >>" additional_order
+if [ $additional_order -eq 2 ]; then
+break
+fi
 # Dessert
-echo "Dessert"
-read -p "Please choose your favorite dessert" Dessert
-echo "
+elif [ $CHOICE -eq 4 ]; then
+echo " Great choice $F_NAME."
+echo "Dessert options: 
 1 Chocolate Chip Cookies
 2 Cinnamon Mini Sticks
 3 Garlic Butter Sticks
-4 Apple Pie
-5 Ice cream sundae"
-echo "Dessert size"
-read -p "Please choose the dessert size" Dessert_size
-echo "
+4. Apple Pieces
+5. Ice cream sundae"
+read -p "Please choose your favorite dessert" Dessert
+echo "Dessert size: 
 1 Small size $ 2.99
 2 Medium size $ 3.99
 3 Large size $ 4.99"
+read -p "Please choose the dessert size" Dessert_size
 if [ $Dessert_size -eq 1 ]; then
 subtotal=2.99
 elif [ $Dessert_size -eq 2 ]; then
@@ -231,26 +251,31 @@ subtotal=3.99
 elif [ $Dessert_size -eq 3 ]; then
 subtotal=4.99
 fi
+# GO  to main menu for additional order
+read -p " do you like to go for a additional order? Type 1 for yes or 2 for no >>" additional_order
+if [ $additional_order -eq 2 ]; then
+break
+fi
 # Drink
-echo "Drink"
-read -p "Please choose your drink" Drink
-echo "
+elif [ $CHOICE -eq 5 ]; then
+echo " Great choice $F_NAME."
+echo "Drink options:
 1 Coca cola
-2 Pepsi
-3 Sprite
-4 Mountain Dew
-5 Dr. Pepper
-6 Orange Juice
-7 Apple Juice
-8 Ice Tea
-9 Spring water"
+265 2 Pepsi
+266 3 Sprite
+267 4 Mountain Dew
+268 5 Dr. Pepper
+269 6 Orange Juice
+270 7 Apple Juice
+271 8 Ice Tea
+272 9 Spring water"
+read -p "Please choose your drink" Drink
 # Drink 
-echo "Drink size"
-read -p "Please choose the size of drink" Drink_size
-echo "
+echo "Drink size:
 1 Small 8.oz $ 1.29
-2 Medium 16.oz $ 1.99
-3 Large 20.0z $ 2.10"
+278 2 Medium 16.oz $ 1.99
+279 3 Large 20.0z $ 2.10"
+read -p "Please choose the size of drink" Drink_size
 if [ $Drink_size -eq 1 ]; then
 subtotal=1.29
 elif [ $Drink_size -eq 2 ]; then
@@ -258,4 +283,30 @@ subtotal=1.99
 elif [ $Drink_size -eq 3 ]; then
 subtotal=2.10
 fi
-#
+# GO  to main menu for additional order
+read -p " do you like to go for a additional order? Type 1 for yes or 2 for no >>" additional_order
+if [ $additional_order -eq 2 ]; then
+break
+fi
+#Sauce
+sauce=(Classic_Marinara Buffalo Creamy_Garlic_Parmesan Barbeque)
+elif [ $CHOICE -eq 6 ]; then
+echo " Sauces are the secret to our authenticity. The more you get from them the better, $F_NAME.
+This is the list of our sauce options, they are $ 2.00 each 
+1. Classic Marinara
+2. Buffalo
+3. Creamy Garlic Parmesan
+4. Barbeque"
+read -p " Please confirm your choice of sauce >> " sauce
+subtotal_Sauce=2
+fi
+# GO  to main menu for additional order
+read -p " do you like to go for a additional order? Type 1 for yes or 2 for no" additional_order
+if [ $additional_order -eq 2 ]; then
+break
+fi
+done
+#payment
+#printf "$"; echo "scale=2; ((250/100)*$subtotal)+$subtotal | bc-l"
+price= $subtotal; echo $(($subtotal*25/100))
+echo $price
