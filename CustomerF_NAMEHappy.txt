@@ -1,6 +1,0 @@
- Customer first name: Andrea
-Customer last name: Happy
-Customer email address: 34 Main st. apt 3
-Customer phone number: 
-Customer Street address: , 
-Customer Ziocode: 112121

@@ -1,6 +1,0 @@
- Customer first name: Lera
-Customer last name: S
-Customer email address: lera@gmail.com
-Customer phone number: 2012224578
-Customer Street address: , ALexandria
-Customer Ziocode: 11212
