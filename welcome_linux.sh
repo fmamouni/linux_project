@@ -201,6 +201,7 @@ echo "We offer a variety of crust flavors:"
 tput blink
 echo "----------------------------------------------" | lolcat
 echo " Crust Flavor" | lolcat
+tput blink
 echo " ---------------------------------------------" | lolcat
 tput sgr0
 echo " 
