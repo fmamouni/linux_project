@@ -1,10 +1,10 @@
 #!/bin/bash
-#-------------
+# -------------------------------------------------
 #creators: Andrea, Fatine, Danny, Lera
-#------------
-#------------
+#--------------------------------------------------
+#--------------------------------------------------
 #sudo apt install figlet
-#-----------
+#--------------------------------------------------
 # Define the total function
 clear
 main_menu(){
@@ -26,13 +26,14 @@ tax=$( printf "%0.2f\n" $(echo "scale=2; $total*0.025" | bc))
 printf "The Tax will be: %11s$tax  \n" "$" | lolcat
 grand_total=$(echo "scale=2; $total+$tax" | bc)
 printf " The grand total for your order will be: %2s$grand_total \n" "$" | lolcat
-echo "---------------"
+echo "---------------------------------------------"
 tput blink
-echo "--------------" | lolcat
+echo "---------------------------------------------" | lolcat
 echo " Payment Options:" | lolcat
-echo " ----------" | lolcat
+echo " --------------------------------------------" | lolcat
 tput sgr0
-read -p " Please confirm if you prefer to pay cash or credit card. Type 1 for cash and 2 for credit card: " payment
+echo " Please confirm if you prefer to pay cash or credit card."
+read -p " Type 1 for cash and 2 for credit card: " payment
 if [[ $payment -eq 1 ]]; then
 echo " Thank you for confirming. Please have your cash ready" | lolcat
 elif [[ $payment -eq 2 ]]; then
@@ -42,17 +43,22 @@ read -p " Please enter your card's expiration month: " ex_month
 read -p " Please enter your CVV 3 numbers in the back of your card: " cvv
 fi
 sleep 2
-echo "-------------" | lolcat
+echo "-----------------------------------------------" | lolcat
 echo " $F_NAME, It was our pleasure serving you! We hope you enjoy your order. See you back soon!" | lolcat
 }
-cancel(){ read -p "Would you like to go back to main menu or checkout?
+cancel(){
+while true
+do
+ read -p "Would you like to go back to main menu or checkout?
 1. Main menu
 2. Checkout: " cancel
 if [ $cancel -eq 1 ]; then
 main_menu
 elif [ $cancel -eq 2 ]; then
+break
 checkout
 fi
+done
 }
 #Calculating the total
 functionCounter=0
@@ -65,26 +71,26 @@ echo $((total += $1))
     }
 accumulate $subtotal
 done
-# ----------------------
+# -------------------------------------------------
 # Define arrays for price
-#-----------------------
+#--------------------------------------------------
 build_pizza_size_price=(10 13 15)
 signature_pizza_size_price=(6 9 10)
 wings_size_price=(6 12 16 19 21)
-pasta_size_price=(6 9)
+pasta_size_price=(6 7 9)
 Dessert_size_price=(3 4 5)
 Drink_size_price=(2 3 4)
 
-#----------------
+#--------------------------------------------------
 #Welcome and customer input
-#----------------
+#--------------------------------------------------
 tput bold
 tput blink
 figlet Welcome to FLAD Pizza! -f banner | lolcat
 tput sgr0
-#---------
+#-------------------------------------------------
 #Welcome message
-#---------
+#-------------------------------------------------
 tput bold
 tput setaf 4
 printf "\n"
@@ -95,33 +101,33 @@ read -p " Please enter your last name: " L_NAME
 read -p " Please enter your email address: " EMAIL
 read -p " Please enter your city: " CITY
 read -p " Please enter your phone number: " PHONE
-read -p " Please enter your street addres: " STREET
+read -p " Please enter your street address: " STREET
 cowsay -f tux We deliver to zipcode range 22211 and 24500 | lolcat 
 read -p " Please enter your zipcode: " ZIPCODE
-echo "-------------" | lolcat
-echo "-------------" | lolcat
+echo "----------------------------------------------" | lolcat
+echo "----------------------------------------------" | lolcat
 clear
 # Zipcode
 #cowsay -f tux We deliver to zipcode range 22211 and 24500 | lolcat 
-read -p " $F_NAME, please confirm if you prefer to pick up your order or have it delivered.
-Type 1 for pick up or 2 for delivery: "  DELIVERY
+echo " $F_NAME, please confirm if you prefer to pick up your order or have it delivered." | lolcat
+read -p "Type 1 for pick up or 2 for delivery: "  DELIVERY
 if [ $DELIVERY -eq 2 ]; then  
 if [ $ZIPCODE -ge 22211 ] && [ $ZIPCODE -le 24500 ]; then 
-echo "------------" 
+echo "----------------------------------------------" 
 sleep 3
-echo "Thank you for confirming, Your order will be ready and delivered to $ADDRESS, $CITY, $ZIPCODE in 15 min" 
+echo "Thank you for confirming, Your order will be ready and delivered to $ADDRESS $CITY $ZIPCODE in 15 min" 
 elif [ $ZIPCODE -lt 22211 ] || [ $ZIPCODE -gt 24500 ]; then
 read -p " We are sorry, Our services don't cover the zipcode area $ZIPCODE. Please confirm if you prefer to pick up your order. Please select 1 to pick up your order or 2 to cancel the order >> " PICKUP
 if [ $PICKUP -eq 2 ]; then 
-echo "---------"
+echo "-----------------------------------------------"
 sleep 3
 echo " Sorry to see you leave. We hope to see you back soon. If you change your mind, check out our menu below:"
 elif [ $PICKUP -eq 1 ]; then 
 sleep 3
-echo "--------"
+echo "-----------------------------------------------"
 echo " Awesome, Thank you for confirming $F_NAME. Your order will be ready in 15 min. "
 elif [ $DELIVERY -eq 1 ]; then 
-echo " Awesome. Your order will be ready in 10 min. Let's get you started with your order!"
+echo " Awesome. Your order will be ready in 10 min."
 elif [ $DELIVERY -eq 1 ]; then 
 echo " Thank you for confirming $F_NAME, Your order will be ready in the next 10 min."
 fi
@@ -131,10 +137,10 @@ fi
 sleep 1
 tput sgr0
 tput blink
-echo " -*-*-*-*-*-*-*-*" | lolcat
+echo " -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" | lolcat
 echo " Let us get you started, $F_NAME." 
 tput blink
-echo " -*-*-*-*-*-*-*-*" | lolcat
+echo " -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" | lolcat
 while true
  do
 main_menu
@@ -143,10 +149,10 @@ main_menu
 if [ $CHOICE -eq 1 ]; then
 echo " Great choice $F_NAME. At FLAD pizza you may choose one of our signature pizza or build your own"
 
-echo "-------------------------" 
+echo "--------------------------------------------------------" 
 echo " Our FLAD signature pizza comes with your choice of crust, crust flavor, and classic marinara"
 tput blink
-echo "-------------------------------------------" | lolcat
+echo "---------------------------------------------------------" | lolcat
 echo " size           Slices          Price        Order number" | lolcat
 echo "........................................................." | lolcat
 tput sgr0
@@ -154,12 +160,12 @@ echo " Personal        4 slices        $ 6            1       "
 echo " Medium          8 slices        $ 9            2       "
 echo " Large           8 slices        $ 10           3       "
 echo " "
-echo "----------------"
+echo "--------------------------------------------------------"
 #read -p " Would you like one of our signature pizza? 1 for yes and 2 for no?: " SIGNATURE
 #if [ $SIGNATURE -eq 1 ]; then 
-echo "-------------" | lolcat
+echo "--------------------------------------------------------" | lolcat
 echo " FLAD signature pizza toppings: " | lolcat
-echo "--------------" | lolcat
+echo "--------------------------------------------------------" | lolcat
 echo "1- Cheese (mozzarella cheese)" | lolcat
 echo "2- Pepperoni" | lolcat
 echo "3- Supreme (peperoni, sausage, mushroom, red onion, green bell peppers, mediteranean" | lolcat
@@ -174,9 +180,9 @@ echo " "
 #crust choice
 echo " We offer a variety of crust options:" 
 tput blink
-echo "------------" | lolcat
+echo "---------------------------------------------" | lolcat
 echo " Crust options" | lolcat
-echo "------------" | lolcat
+echo "---------------------------------------------" | lolcat
 tput sgr0
  echo " 
  1. stuffed crust
@@ -193,9 +199,9 @@ echo " "
 # Crust flavor
 echo "We offer a variety of crust flavors:"
 tput blink
-echo "--------" | lolcat
+echo "----------------------------------------------" | lolcat
 echo " Crust Flavor" | lolcat
-echo " --------" | lolcat
+echo " ---------------------------------------------" | lolcat
 tput sgr0
 echo " 
  1. no flavor
@@ -209,9 +215,9 @@ cancel
 fi
 echo " "
 tput blink
-echo "---------" | lolcat
+echo "----------------------------------------------" | lolcat
 echo "Signature Pizza size:" | lolcat
-echo "----------" | lolcat
+echo "----------------------------------------------" | lolcat
 tput sgr0
 echo "1 for personal" | lolcat
 echo "2 for medium" | lolcat
@@ -237,36 +243,36 @@ checkout
 break
 fi
 clear
-#----------------------
+#------------------------------------------
 # Build your own pizza
-#---------------------
+#------------------------------------------
 echo " "
 elif [ $CHOICE -eq 2 ]; then
 #elif [ $SIGNATURE -eq 2 ]; then
-echo " ---------------------"
+echo " ------------------------------------"
 echo " Let us have you build your own pizza" 
 echo " All create your own pizza come with your choice of crust type, up to
 3 toppings, crust flavor, and your personal choice of cheese. "
 tput sgr0
 tput blink
-echo "---------------------" | lolcat
+echo "---------------------------------------------------------" | lolcat
 echo " size           Slices          Price        Order number" | lolcat
 echo "........................................................." | lolcat
 tput sgr0
 echo " Personal        4 slices        $ 10            1       " | lolcat
 echo " Medium          8 slices        $ 13            2       " | lolcat
 echo " Large           8 slices        $ 15            3       " | lolcat
-#--------------------------------
+#-------------------------------------------------------------
 #Build your own pizza crust types
-#-------------------------------
+#-------------------------------------------------------------
 echo " "
 tput blink
-echo "---------" | lolcat
+echo "--------------------------------------------------------" | lolcat
 echo " Crust choice:" | lolcat
-echo " ------------" | lolcat
+echo " -------------------------------------------------------" | lolcat
 tput sgr0
 echo "
-1. Olive stuffed crust
+1. Stuffed crust
 2. Original Pan 
 3. Hand Tossed
 4. Thin Crust
@@ -276,49 +282,49 @@ read -p " Please choose your crust preferance: " CRUST
 if [ $CRUST -eq 0 ]; then
 cancel
 fi
-#---------------------
+#-------------------------------------------------------------
 # Crust flavor
-#-------------------
+#-------------------------------------------------------------
 tput blink
-echo "---------" | lolcat
+echo "--------------------------------------------------------" | lolcat
 echo " Crust flavor" | lolcat
-echo " ---------" | lolcat
+echo " -------------------------------------------------------" | lolcat
 tput sgr0
 echo "
-1 no flavor
-2 Garlic buttery blend
-3 FLAD favorite
-4 Toasted paresan
-0 Cancel" | lolcat
+1. no flavor
+2. Garlic buttery blend
+3. FLAD favorite
+4. Toasted parmesan
+0. Cancel" | lolcat
 read -p " Please choose your crust flavor: " CRUST_FLAVOR
 if [ $CRUST_FLAVOR -eq 0 ]; then
 cancel
 fi
 
-#---------------
+#-----------------------------------------------------------
 #toppings
-#----------------
+#-----------------------------------------------------------
 tput blink
-echo "--------------" | lolcat
+echo "------------------------------------------------------" | lolcat
 echo " Toppings:" | lolcat
-echo "--------" | lolcat
+echo "------------------------------------------------------" | lolcat
 tput sgr0
 echo "
-1 Mushrooms
-2 Red Onions
-3 Mediterranean black olives
-4 Jalapeno Peppers
-5 Banana peppers
-6 Pinaples
-7 Roma tomatoes
-8 Spinach
-9 Artichoke hearts
-10 Anchovies
-11 Ham
-12 Sausage
-13 Grilled chicken
-14 Pepperoni
-0 Cancel" | lolcat
+1. Mushrooms
+2. Red Onions
+3. Mediterranean black olives
+4. Jalapeno Peppers
+5. Banana peppers
+6. Pinaples
+7. Roma tomatoes
+8. Spinach
+9. Artichoke hearts
+10.Anchovies
+11.Ham
+12.Sausage
+13.Grilled chicken
+14.Pepperoni
+0. Cancel" | lolcat
 #counter=1
 echo " Kindly choose up to three toppings." | lolcat
 tput sgr0
@@ -339,9 +345,9 @@ fi
 #done
 echo " "
 tput blink
-echo "--------------" | lolcat
+echo "--------------------------------------------" | lolcat
 echo " pizza size"  | lolcat
-echo "----------" | lolcat
+echo "--------------------------------------------" | lolcat
 tput sgr0
 echo " 
 1. Personal
@@ -359,9 +365,9 @@ elif [[ $build_pizza_size == "3" ]]; then
 subtotal=${build_pizza_size_price[2]}
 fi
 accumulate $subtotal
-#-------------------------
+#------------------------------------------------
 # GO to main menu for additional order
-#-------------------------
+#------------------------------------------------
 read -p " Would you like to go for an additional order? Type 1 for yes or 2 for no >> " additional_order
 if [ $additional_order -eq 1 ]; then
 main_menu
@@ -370,20 +376,20 @@ checkout
 break
 fi
 clear
-#------------
-#-----------
+#-----------------------------------------------
+#-----------------------------------------------
 # Side menu 
-#-----------
-#-----------
+#-----------------------------------------------
+#-----------------------------------------------
 # Wings 
-#-------
+#-----------------------------------------------
 elif [ $CHOICE -eq 3 ]; then
 echo " Great choice $F_NAME. Our wings come in different flavors:"
 echo " "
 tput blink
-echo "----------" | lolcat
+echo "----------------------------------------" | lolcat
 echo " Wings Flavors:" | lolcat
-echo "------------" | lolcat
+echo "----------------------------------------" | lolcat
 sleep 2
 tput sgr0
 echo "
@@ -398,15 +404,15 @@ if [ $wings -eq 0 ]; then
 cancel
 fi
 
-#---------
+#-----------------------------------------------
 # Wings size
-#---------
+#-----------------------------------------------
 echo " Now that you have chosen your wings flavor, let's choose the size of your order. Please select from the below list"
 echo " "
 tput blink
-echo "--------" | lolcat
+echo "------------------------------------------" | lolcat
 echo " Wings size: " | lolcat
-echo " ---------" | lolcat
+echo " -----------------------------------------" | lolcat
 tput sgr0
 echo "
 1. 6 pieces $ 6
@@ -430,9 +436,9 @@ elif [[ $wings_size == "5" ]]; then
 subtotal=${wings_size_price[4]}
 fi
 accumulate $subtotal
-#-----------------
+#--------------------------------------------------
 #GO to main menu for additional order
-#----------------
+#--------------------------------------------------
 read -p "Would you like to go for an additional order? Type 1 for yes or 2 for no: " additional_order
 if [ $additional_order -eq 1 ]; then
 main_menu
@@ -441,21 +447,21 @@ checkout
 break
 fi
 clear
-#----------
+#-------------------------------------------------
 # Pasta 
-#---------
+#-------------------------------------------------
 elif [ $CHOICE -eq 4 ]; then
 echo " "
 echo " Great choice $F_NAME."
 echo " Our pasta is the best!! These are the different pasta options: "
 tput blink
-echo " ---------------" | lolcat
+echo " -------------------------------------------" | lolcat
 echo " Pasta Flavors:" | lolcat
-echo " ---------" | lolcat
+echo " -------------------------------------------" | lolcat
 tput sgr0
 echo "
 1. Creamy Mushroom with Shrimp
-2. Bake Chicken with Alfredo Sauce
+2. Baked Chicken with Alfredo Sauce
 3. Meatball with red onion
 4. Ham with olives
 5. Italian Sausage
@@ -465,52 +471,55 @@ if [ $pasta -eq 0 ]; then
 cancel
 fi
 
-#---------
+#-------------------------------------------------
 #pasta size
-#----------
+#-------------------------------------------------
 echo " "
 tput blink
-echo "---------" | lolcat
+echo "--------------------------------------------" | lolcat
 echo " Pasta Size:" |lolcat
-echo " ---------"
+echo " -------------------------------------------"
 tput sgr0
 echo "
 1. Small size $ 6
-2. Large size $ 9
+2. Medium Size $ 7
+3. Large size $ 9
 0. Cancel" | lolcat
-read -p "Please choose the size of the bowl for your pasta >>" pasta_size
+read -p "Please choose the size of the bowl for your pasta: " pasta_size
 if [ $pasta_size -eq 0 ]; then
 cancel
 elif [[ $pasta_size == "1" ]]; then
 subtotal=${pasta_size_price[0]}
 elif [[ $pasta_size == "2" ]]; then
 subtotal=${pasta_size_price[1]}
+elif [[ $pasta_size == "3" ]]; then
+subtotal=${pasta_size_price[2]}
 fi
 accumulate $subtotal
 # GO  to main menu for additional order
-read -p "Wouldm you like to go for an additional order? Type 1 for yes or 2 for no:  " additional_order
+read -p "Would you like to go for an additional order? Type 1 for yes or 2 for no:  " additional_order
 if [ $additional_order -eq 1 ]; then
 main_menu
 elif [ $additional_order -eq 2 ]; then
 break
 fi
 clear
-#--------
+#-------------------------------------------------
 # Dessert
-#--------
+#-------------------------------------------------
 elif [ $CHOICE -eq 5 ]; then
 echo " "
 echo " Great choice $F_NAME! There is always a craving for sweets"
 tput blink
-echo " ---------" | lolcat
+echo " -------------------------------------------" | lolcat
 echo " Dessert Options:" | lolcat
-echo " ---------" | lolcat
+echo " -------------------------------------------" | lolcat
 tput sgr0
 echo " 
-1 Chocolate Chip Cookies
-2 Cinnamon Mini Sticks
-3 Garlic Butter Sticks
-4. Apple Pieces
+1. Chocolate Chip Cookies
+2. Cinnamon Mini Sticks
+3. Garlic Butter Sticks
+4. Apple Pie
 5. Ice cream sundae
 0. Cancel" | lolcat
 read -p "Please choose your favorite dessert: " Dessert
@@ -519,15 +528,15 @@ cancel
 fi
 echo " "
 tput blink
-echo "------------" | lolcat
+echo "--------------------------------------------" | lolcat
 echo "Dessert size: " | lolcat
-echo "-------------" | lolcat
+echo "--------------------------------------------" | lolcat
 tput sgr0
 echo "
-1 Small size $ 3
-2 Medium size $ 4
-3 Large size $ 5
-0 Cancel" | lolcat
+1. Small size $ 3
+2. Medium size $ 4
+3. Large size $ 5
+0. Cancel" | lolcat
 read -p "Please choose the dessert size: " Dessert_size
 if [ $Dessert_size -eq 0 ]; then
 cancel
@@ -553,9 +562,9 @@ elif [ $CHOICE -eq 6 ]; then
 echo " "
 echo " Great choice $F_NAME."
 tput blink
-echo "----------" | lolcat
+echo "------------------------------------------" | lolcat
 echo "Drink options:" | lolcat
-echo "---------" | lolcat
+echo "------------------------------------------" | lolcat
 tput sgr0
 echo "
 1 Coca cola
@@ -575,9 +584,9 @@ fi
 # Drink 
 echo " "
 tput blink
-echo "----------" | lolcat
+echo "-------------------------------------------" | lolcat
 echo "Drink size:" | lolcat
-echo "--------" | lolcat
+echo "-------------------------------------------" | lolcat
 tput sgr0
 echo "
 1 Small 8.oz $ 2
@@ -596,7 +605,7 @@ subtotal=${Drink_size_price[2]}
 fi
 accumulate $subtotal
 # GO  to main menu for additional order
-read -p "Wouldk you like to go for an additional order? Type 1 for yes or 2 for no:  " additional_order
+read -p "Would you like to go for an additional order? Type 1 for yes or 2 for no:  " additional_order
 if [ $additional_order -eq 1 ]; then
 main_menu
 elif [ $additional_order -eq 2 ]; then
@@ -612,9 +621,9 @@ echo " "
 echo " Sauces are the secret to our authenticity. The more you get from them the better, $F_NAME.
 This is the list of our sauce options" | lolcat
 tput blink
-echo " --------" | lolcat
+echo " -------------------------------------------" | lolcat
 echo " Sauce Options:" | lolcat
-echo "---------" | lolcat
+echo "--------------------------------------------" | lolcat
 tput sgr0
 echo "
 1. Classic Marinara
@@ -622,7 +631,8 @@ echo "
 3. Creamy Garlic Parmesan
 4. Barbeque
 0. Cancel" | lolcat
-read -p " Do you want some sauce? Select 1 for yes and 2 for no: " sauce
+echo " Sauce comes at an additional cost of $ 2.00 " | lolcat
+read -p " Do you want some sauce? Select 1 for or 0 for no: " sauce
 if [ $sauce -eq 0 ]; then
 cancel
 elif [[ $sauce -eq 1 ]]; then
@@ -631,7 +641,7 @@ subtotal=2
 fi
 accumulate $subtotal
 # GO  to main menu for additional order
-read -p "Wouldy you like to go for an additional order? Type 1 for yes or 2 for no: " additional_order
+read -p "Would you like to go for an additional order? Type 1 for yes or 2 for no: " additional_order
 if [ $additional_order -eq 1 ]; then
 main_menu
 elif [ $additional_order -eq 2 ]; then
@@ -666,10 +676,10 @@ done
 #grand_total=$(echo "scale=2; $total+$tax" | bc)
 #printf " The grand total for your order will be: %2s$grand_total \n" "$"
 #Payment options
-#echo "---------------"
-#echo "--------------"
+#echo "----------------------------------------------"
+#echo "----------------------------------------------"
 #echo " Payment Options:"
-#echo " ----------"
+#echo " ---------------------------------------------"
 #read -p " Please confirm if you prefer to pay cash or credict card. Type 1 for cash and 2 for credit card: " payment
 #if [[ $payment -eq 1 ]]; then
 #echo " Thank you for confirming. Please have your cash ready"
